@@ -17,4 +17,4 @@ st.markdown(
     "This article aims to examine the **impact** of TAVI placement height and alignment on hemodynamic flow."
 )
 
-st.image("assets/aorta.png", caption="Velocity pathlines from the aorta.")
+# st.image("assets/aorta-low.png", caption="Velocity pathlines from the aorta.")
