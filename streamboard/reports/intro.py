@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("Taviloc")
+st.title(" Taviloc :straight_ruler:")
 st.markdown(
     "**Aortic valve prostheses** are becoming an increasingly popular option for patients with severe aortic stenosis and high surgical risk [1]."
 )
