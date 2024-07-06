@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "streamboard"
+name = "databoard"
 version = "0.1.0"
 description = ""
 authors = ["Lewin <57636993+lewinkoon@users.noreply.github.com>"]
