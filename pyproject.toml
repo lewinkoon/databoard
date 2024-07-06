@@ -12,6 +12,9 @@ pandas = "^2.2.2"
 matplotlib = "^3.9.1"
 seaborn = "^0.13.2"
 
+[tool.poetry.scripts]
+databoard = "databoard.cli:main"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
