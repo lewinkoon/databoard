@@ -1,3 +1,3 @@
 import streamlit as st
 
-st.title("Methods")
+st.title("Methods 🛠️")

@@ -2,7 +2,7 @@ import streamlit as st
 
 pg = st.navigation(
     {
-        "sections": [
+        "Sections": [
             st.Page("sections/01-intro.py", title="Introduction", icon="📝"),
             st.Page("sections/02-methods.py", title="Methods", icon="🛠️"),
             st.Page("sections/03-results.py", title="Results", icon="📊"),
