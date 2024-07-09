@@ -5,6 +5,7 @@ import pandas as pd
 
 SECTIONS = "data/sections.csv"
 
+st.title("Results")
 st.header("Velocity", divider="rainbow")
 
 cont = st.container(border=True)
