@@ -17,7 +17,7 @@ def cli():
 
 @cli.command(help="Serve application.")
 def run():
-    web.main_run(["databoard/run.py"])
+    web.main_run(["taviloc/run.py"])
 
 
 @cli.command(help="Split multi-table csv file.")
