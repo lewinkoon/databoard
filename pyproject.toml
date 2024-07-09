@@ -13,7 +13,7 @@ matplotlib = "^3.9.1"
 seaborn = "^0.13.2"
 
 [tool.poetry.scripts]
-databoard = "databoard.cli:main"
+databoard = "databoard.cli:cli"
 
 [build-system]
 requires = ["poetry-core"]
