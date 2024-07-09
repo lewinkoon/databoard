@@ -26,29 +26,39 @@ def split(file):
     with open(file, "r") as f:
         lines = f.readlines()
 
-    datatable = {}
+    tables = []
     buffer = []
     counter = 1
-    name = ""
-    delimiter = ";"
+    delimiter = ","
 
-    for line in lines:
+    for idx, line in enumerate(lines):
         if "[Name]" in line:
             if buffer:
                 df = pd.DataFrame([x.split(delimiter) for x in buffer])
-                output = f"{counter}.csv"
-                df.to_csv(output, index=False, header=False)
+                df.columns = header
+                df.insert(1, "Location", location)
+                df.insert(1, "Height", height)
                 counter += 1
                 buffer = []
+                tables.append(df)
 
-            name = lines[lines.index(line) + 1].strip().split(delimiter)[0]
+            name = lines[idx + 1].strip().split(delimiter)[0].split()
+            location = name[0]
+            height = name[3]
         elif "[Data]" in line:
-            raw_header = lines[lines.index(line) + 1].strip().split(delimiter)[0]
-            header = re.sub(r"\s*\[.*?\]\s*", "", raw_header)
-        elif any(char != delimiter for char in line.strip()):
+            raw_header = lines[lines.index(line) + 1].strip()
+            header = re.sub(r"\s*\[.*?\]\s*", "", raw_header).split(delimiter)
+        elif line.strip().split(delimiter)[0].isdigit():
             buffer.append(line.strip())
+        # elif any(char != delimiter for char in line.strip()):
+        #     buffer.append(line.strip())
 
     if buffer:
         df = pd.DataFrame([x.split(delimiter) for x in buffer])
-        output = f"{counter}.csv"
-        df.to_csv(output, index=False, header=False)
+        df.columns = header
+        df.insert(1, "Location", location)
+        df.insert(1, "Height", height)
+        tables.append(df)
+
+    res = pd.concat(tables, ignore_index=True)
+    res.to_csv("test.csv", index=False, header=True)
