@@ -8,7 +8,7 @@ WALLS = "data/walls.csv"
 BOUNDARIES = "data/boundaries.csv"
 
 with st.sidebar:
-    parameter = st.selectbox("Choose parameter.", ("Velocity", "Shear", "Flow"))
+    parameter = st.selectbox("Choose parameter.", ("Velocity", "Shear", "Mass Flow"))
     height = st.selectbox("Select prosthesis height.", ("Low", "Neutral", "High"))
 
 st.title(f"Results 📊 - {parameter}")
@@ -61,7 +61,7 @@ elif parameter == "Shear":
     fig, ax = plt.subplots()
     sns.violinplot(data=df, x=parameter, y="Location", ax=ax, split=True, inner="quart")
     plt.xlabel("Shear (Pa)")
-    plt.xlim(-0.5, 2.5)
+    # plt.xlim(-0.5, 2.5)
     st.pyplot(fig)
 
     st.header(f"{parameter} field", divider="rainbow")
@@ -71,25 +71,25 @@ elif parameter == "Shear":
 
     st.header(f"{parameter} data", divider="rainbow")
     st.dataframe(df, use_container_width=True)
-elif parameter == "Flow":
+elif parameter == "Mass Flow":
     st.header(f"{parameter} contours", divider="rainbow")
     df = pd.read_csv(BOUNDARIES)
     df = df[["Height", "Location", parameter, "X", "Y", "Z"]]
     df = df[
         df["Location"].isin(
             [
-                "Right Carotid",
-                "Left Carotid",
+                "RCA",
+                "LCA",
                 # "Right Subclavian",
                 # "Left Subclavian",
                 # "Outlet",
             ]
         )
     ]
-    df["Flow"] = df["Flow"] * -1000000
+    df[parameter] = df[parameter] * -1000000
     df = df[df["Height"] == height]
     fig, ax = plt.subplots()
     sns.violinplot(data=df, x=parameter, y="Location", ax=ax, split=True, inner="quart")
     plt.xlabel("Mass Flow (mg/s)")
-    plt.xlim(-25, 100)
+    # plt.xlim(-25, 100)
     st.pyplot(fig)

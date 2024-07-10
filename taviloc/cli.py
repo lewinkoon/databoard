@@ -1,12 +1,11 @@
 import streamlit.web.cli as web
 import click
-import os
 import re
 import pandas as pd
 
 
 @click.group(
-    epilog="Check out readme at https://github.com/lewinkoon/databoard for more details."
+    epilog="Check out readme at https://github.com/lewinkoon/taviloc for more details."
 )
 def cli():
     """
@@ -22,14 +21,14 @@ def run():
 
 @cli.command(help="Split multi-table csv file.")
 @click.argument("file", required=True, type=click.Path(exists=True))
-def split(file):
+def parse(file):
     with open(file, "r") as f:
         lines = f.readlines()
 
     tables = []
     buffer = []
     counter = 1
-    delimiter = ","
+    delimiter = ";"
 
     for idx, line in enumerate(lines):
         if "[Name]" in line:
@@ -61,4 +60,4 @@ def split(file):
         tables.append(df)
 
     res = pd.concat(tables, ignore_index=True)
-    res.to_csv("test.csv", index=False, header=True)
+    res.to_csv("data/walls.csv", index=False, header=True)
