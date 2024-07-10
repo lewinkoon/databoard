@@ -2,9 +2,12 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/lewinkoon/databoard)
 
-> Deploy an interactive webapp to show data results from scientific experiments.
+> Impact of percutaneous aortic valve placement height on hemodynamic flow.
 
 ## Setup
+
+> [!IMPORTANT]  
+> [Poetry](https://python-poetry.org/) dependency manager is required to run this project.
 
 Clone the repository.
 
@@ -27,16 +30,17 @@ python -m venv .venv
 Activate the previously created virtual environment.
 
 ```shell
-.venv\Scripts\activate # on Windows
-source .venv/bin/activate # on Unix or MacOS
+poetry shell
 ```
 
 Install the required dependencies for the project.
 
 ```shell
-python -m pip install .
+poetry install
 ```
 
-## License
+Run web application on `localhost:8501`.
 
-This project is licensed under the **MIT License**. See `license.txt` file for details.
+```shell
+taviloc run
+```
