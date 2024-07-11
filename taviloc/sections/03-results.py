@@ -20,6 +20,30 @@ if parameter == "Velocity":
         An elevation in the placement height of the valve prosthesis leads to heightened velocities within the ascending aorta region. Nevertheless, this velocity disparity diminishes with increasing distance from the aortic valve.
         """
     )
+
+    with st.container():
+        col1, col2, col3, col4, col5 = st.columns(5)
+        col1.image("assets/velocity-low-s1.png")
+        col2.image("assets/velocity-low-s2.png")
+        col3.image("assets/velocity-low-s3.png")
+        col4.image("assets/velocity-low-s4.png")
+        col5.image("assets/velocity-low-s5.png")
+    with st.container():
+        col1, col2, col3, col4, col5 = st.columns(5)
+        col1.image("assets/velocity-neutral-s1.png")
+        col2.image("assets/velocity-neutral-s2.png")
+        col3.image("assets/velocity-neutral-s3.png")
+        col4.image("assets/velocity-neutral-s4.png")
+        col5.image("assets/velocity-neutral-s5.png")
+    with st.container():
+        col1, col2, col3, col4, col5 = st.columns(5)
+        col1.image("assets/velocity-high-s1.png")
+        col2.image("assets/velocity-high-s2.png")
+        col3.image("assets/velocity-high-s3.png")
+        col4.image("assets/velocity-high-s4.png")
+        col5.image("assets/velocity-high-s5.png")
+    st.image("assets/velocity-legend.png", caption="Velocity contours.")
+
     df = pd.read_csv(SECTIONS)
     df = df[["Height", "Location", parameter, "X", "Y", "Z"]]
     df = df[df["Height"] == height]
@@ -28,6 +52,12 @@ if parameter == "Velocity":
     plt.xlabel("Velocity (m/s)")
     plt.xlim(-0.1, 0.6)
     st.pyplot(fig)
+
+    # st.markdown(
+    #     """
+    #     The following velocity contours show the significant increment on velocity in higher tavi placements.
+    #     """
+    # )
 
     st.header(f"{parameter} field", divider="rainbow")
     st.image(
